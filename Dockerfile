@@ -13,8 +13,8 @@ RUN apt-get update \
 WORKDIR /app
 COPY Model/ Model/
 COPY Scripts/ Scripts/
-COPY config.env /
-COPY main.py /
+COPY config.env config.env
+COPY main.py main.py
 
 COPY requirements.txt .
 
