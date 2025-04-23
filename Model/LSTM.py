@@ -15,6 +15,9 @@ output_size = int(environ.get('OUTPUT_SIZE'))
 num_layers = int(environ.get('NUM_LAYERS'))
 teacher_forcing_ratio = float(environ.get('TEACHER_FORCING_RATIO'))
 
+torch.manual_seed(42)
+torch.cuda.manual_seed(42)
+
 class LSTMModel(nn.Module):
 
 
