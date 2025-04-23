@@ -14,11 +14,12 @@ WORKDIR /app
 COPY Model/ Model/
 COPY Scripts/ Scripts/
 COPY config.env /
+COPY main.py /
 
 COPY requirements.txt .
 
 RUN --mount=type=cache,target=/root/.cache pip install --upgrade pip && \
-    pip install -r requirements.txt && \
-    pip install torch --index-url https://download.pytorch.org/whl/cu118
+    pip install torch --index-url https://download.pytorch.org/whl/cu118 && \
+    pip install -r requirements.txt
 
 CMD ["python", "main.py"]
