@@ -7,7 +7,7 @@ import pandas as pd
 import torch
 from dotenv import load_dotenv
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from torch.nn.utils.rnn import pad_sequence
 from torch.utils.data import Dataset, DataLoader
 
@@ -74,8 +74,10 @@ class TimeSeriesDataset(Dataset):
     def __init__(self, x_data, y_data):
         self.x_data = x_data
         self.y_data = y_data
-        self.scaler_x = MinMaxScaler(feature_range=(-1, 1))
-        self.scaler_y = MinMaxScaler(feature_range=(-1, 1))
+        # self.scaler_x = MinMaxScaler(feature_range=(-1, 1))
+        # self.scaler_y = MinMaxScaler(feature_range=(-1, 1))
+        self.scaler_x = StandardScaler()
+        self.scaler_y = StandardScaler()
         self._prepare_data()
 
     def _prepare_data(self):
