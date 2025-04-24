@@ -3,4 +3,4 @@ venv/
 .idea
 Data/
 Visualization/
-Model_weights
+Model_weights/
