@@ -32,8 +32,6 @@ def train_model(train_loader, val_loader):
     for epoch in range(num_epochs):
         model.train()
         train_loss = 0
-        train_losses = []
-        val_losses = []
 
         for x_data, y_data in train_loader:
             x_data = x_data.to(device)
@@ -72,6 +70,20 @@ def train_model(train_loader, val_loader):
 
     print(f'Best Loss: {best_loss:.6f}')
     print(f'Successfully completed learning!')
-    Visualization.save_learning_loss(train_losses, val_losses, img_save_path)
+    Visualization.save_learning_loss(train_losses, val_losses,
+                                     f'{img_save_path}losses.png')
+
+    model.load_state_dict(torch.load(model_save_path))
+    model.eval()
+
+    with torch.no_grad():
+        test_tok, test_dynamo = next(iter(val_loader))
+        test_tok = test_tok.to(device)
+        predictions = model(test_tok).cpu().numpy()
+
+        for i in range(3):
+            Visualization.save_predicted_and_actual_seq(test_dynamo[i], predictions[i],
+                                                        f'{img_save_path}pred{i}.png')
+
 
 
