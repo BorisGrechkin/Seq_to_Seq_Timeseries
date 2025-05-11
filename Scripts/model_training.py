@@ -73,7 +73,6 @@ def train_model(train_loader, val_loader):
     Visualization.save_learning_loss(train_losses, val_losses,
                                      f'{img_save_path}losses.png')
 
-    model.load_state_dict(torch.load(model_save_path))
     model.eval()
 
     with torch.no_grad():
