@@ -11,7 +11,7 @@ if __name__ == '__main__':
     x_df = pd.read_csv(tok_df_path)
     y_df = pd.read_csv(dynamo_df_path)
 
-    data_prep = DataPreparation('data')
+    data_prep = DataPreparation(data_col_name = 'data')
     train_loader, val_loader = data_prep.do_all_data_preparation(x_df, y_df)
     print('Data preparation done')
 
