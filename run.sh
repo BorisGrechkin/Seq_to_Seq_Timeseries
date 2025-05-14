@@ -1,5 +1,5 @@
 # bash
-docker build -t boris_ai_model .
+docker build -t seq_to_seq_model .
 docker run --gpus all --rm \
   -v $(pwd)/Data:/app/Data \
   -v $(pwd)/Visualization:/app/Visualization \
